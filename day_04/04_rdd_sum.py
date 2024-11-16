@@ -1,4 +1,5 @@
 from typing import List
+
 from pyspark.sql import SparkSession
 
 spark = SparkSession.builder.appName("Day 03").master("local").getOrCreate()
