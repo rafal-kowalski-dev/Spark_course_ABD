@@ -2,17 +2,17 @@ from typing import List
 
 from pyspark.sql import SparkSession
 
-spark = SparkSession.builder.appName("Day 03").master("local").getOrCreate()
+spark = SparkSession.builder.appName('Day 03').master('local').getOrCreate()
 
 data: List[str] = [
-    "agnieszka",
-    "bartosz",
-    "celina",
-    "dawid",
-    "elzbieta",
-    "filip",
-    "grzegorz",
-    "hanna",
+    'agnieszka',
+    'bartosz',
+    'celina',
+    'dawid',
+    'elzbieta',
+    'filip',
+    'grzegorz',
+    'hanna',
 ]
 
 names_rdd = spark.sparkContext.parallelize(data)
