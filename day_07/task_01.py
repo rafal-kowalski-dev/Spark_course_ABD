@@ -1,10 +1,11 @@
 """Tasks after day 7."""
 
-from pyspark.sql import DataFrame, SparkSession
-from pyspark.sql.functions import desc, col, explode, split
-from pyspark.sql.types import Row
-from typing import Dict
 from datetime import datetime
+from typing import Dict
+
+from pyspark.sql import DataFrame, SparkSession
+from pyspark.sql.functions import col, desc, explode, split
+from pyspark.sql.types import Row
 
 """
 1. Wczytaj do Dataframe’a plik z tytułami Netflix (netflix_titles.csv)
@@ -32,7 +33,7 @@ print('Podgląd danych:')
 data.show(5)
 
 # ad. 3
-print("Zmiana typu NULL na tekst")
+print('Zmiana typu NULL na tekst')
 data_null = data.fillna('NULLaa')
 data_null.show(5)
 
@@ -46,6 +47,7 @@ print('Określenie ilości filmów wg rezyserów')
 data_director = data.groupBy('director').count()
 data_director = data_director.sort(desc(col('count')))
 data_director.show()
+
 
 # ad. 6
 def realese_year_to_int(value: Row, column_name: str) -> Dict:
@@ -64,6 +66,7 @@ def realese_year_to_int(value: Row, column_name: str) -> Dict:
             value[column_name] = None
 
     return value
+
 
 column = 'release_year'
 data_years = data.rdd.map(lambda x: realese_year_to_int(x, column)).toDF()
